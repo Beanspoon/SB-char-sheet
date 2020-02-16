@@ -95,7 +95,7 @@
         <div class="stats">
             <label>Pace</label><input type="number" name="attr_pace" value="12" /> <br />
             <label>Parry</label><input type="text" name="attr_parry" disabled="true" value="2+@{fighting}/2+floor(@{fightingmod}/2)" /><input type="number" name="attr_parry_mod" />
-            <label>Toughness</label><input type="text" name="attr_toughness" disabled="true" value="@{isshieldequipped}"  /><input type="text" name="attr_toughness_mod"  />
+            <label>Toughness</label><input type="text" name="attr_toughness" disabled="true"  /><input type="text" name="attr_toughness_mod"  />
             <label>Charisma</label><input type="number" value='0' name="attr_charisma" />
         </div>
         
@@ -188,7 +188,7 @@
         
         <h2>Shields</h2>
         <fieldset class='repeating_shields'>
-            <input type='checkbox' name='attr_isshieldequipped' />
+            <input type='checkbox' name='attr_isshieldactive' />
             <input type='text' name='attr_shieldname' />
             <input type='number' name='attr_shieldcap' /> / 
             <input type='number' name='attr_shieldcap_max' />
@@ -246,3 +246,30 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" name="attr_activeshield" />
+<input type="text" name="attr_test" />
+
+<script type="text/worker">
+	on("change:repeating_shields:isshieldactive", function(eventInfo) {
+		if (eventInfo.sourceType == "player") {
+			let source = eventInfo.sourceAttribute.split("_")[2];
+			
+			getAttrs(["activeshield", "repeating_shields_shieldcap", "repeating_shields_isshieldactive"], function(values) {
+				if (source == values.activeshield) {
+					setAttrs({
+						repeating_shields_isshieldactive: "on"
+					});
+				}
+				else if (values.repeating_shields_isshieldactive == "on") {
+					setAttrs({
+						["repeating_shields_"+values.activeshield+"_isshieldactive"]: 0,
+						toughness_mod: values.repeating_shields_shieldcap,
+						activeshield: source,
+					});
+					
+				}
+			});
+		}
+	});
+</script>
