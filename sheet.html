@@ -1,0 +1,248 @@
+<div class="3colrow">
+    <div class="col">
+    	<label>Name:</label><input type="text" name="attr_character_name" />
+		<label>Rank:</label><input type="text" name="attr_rank" />
+		<label>XP:</label><input type="number" name="attr_xp" />
+	</div>
+
+	<div class="col">
+		<img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/kitchensink/logo.png" />
+	</div>
+
+	<div class="col">
+		<label>Wild Card:</label><input type='checkbox' name='attr_wildcard' />
+		<label>Race:</label><input type="text" name="attr_race" />
+        <label>Loot points:</label><input type='number' name='attr_lootpoints' />
+	</div>
+
+</div>
+
+<hr/>
+<div class="3colrow">
+	<div class="col">
+		<h2>Attributes</h2>
+		<label>Agility</label><select name='attr_agility' class='dtype'>
+		    <option value='d4'>d4</option>
+		    <option value='d6'>d6</option>
+		    <option value='d8'>d8</option>
+		    <option value='d10'>d10</option>
+		    <option value='d12'>d12</option>
+		</select>
+        <br />
+		<label>Smarts</label><select name='attr_smarts' class='dtype'>
+		    <option value='d4'>d4</option>
+		    <option value='d6'>d6</option>
+		    <option value='d8'>d8</option>
+		    <option value='d10'>d10</option>
+		    <option value='d12'>d12</option>
+		</select>
+        <br />
+		<label>Spirit</label><select name='attr_spirit' class='dtype'>
+		    <option value='d4'>d4</option>
+		    <option value='d6'>d6</option>
+		    <option value='d8'>d8</option>
+		    <option value='d10'>d10</option>
+		    <option value='d12'>d12</option>
+		</select>
+		<br />
+		<label>Strength</label><select name='attr_strength' class='dtype'>
+		    <option value='d4'>d4</option>
+		    <option value='d6'>d6</option>
+		    <option value='d8'>d8</option>
+		    <option value='d10'>d10</option>
+		    <option value='d12'>d12</option>
+		</select>
+		<br />
+		<label>Vigour</label><select name='attr_vigour' class='dtype'>
+		    <option value='d4'>d4</option>
+		    <option value='d6'>d6</option>
+		    <option value='d8'>d8</option>
+		    <option value='d10'>d10</option>
+		    <option value='d12'>d12</option>
+		</select>
+        <hr />
+        
+        <h2>Skills</h2>
+        <div class='skills'>
+        <label class='nonbold'>Unskilled</label><label class='short'>d4 - 2</label>
+        <label class='nonbold'>Fighting</label>
+        <select name="attr_fighting" class="dtype">
+                <option value="d4">d4</option>
+                <option value="d6">d6</option>
+                <option value="d8">d8</option>
+                <option value="d10">d10</option>
+                <option value="d12">d12</option>
+        </select>+
+        <input class="short" type="number" value="-2" name="attr_fightingmod" />
+        <fieldset class="repeating_skills">
+            <input type="text" name="attr_skillname" />
+            <select name="attr_dtype" class="dtype">
+                <option value="d4">d4</option>
+                <option value="d6">d6</option>
+                <option value="d8">d8</option>
+                <option value="d10">d10</option>
+                <option value="d12">d12</option>
+            </select>
+            <span>+</span>
+            <input class="short" type="number" value='0' name="attr_mod" />
+        </fieldset>
+        </div>
+
+	</div>
+
+	<div class="col">
+		<h2>Derived Stats</h2>
+        <div class="stats">
+            <label>Pace</label><input type="number" name="attr_pace" value="12" /> <br />
+            <label>Parry</label><input type="text" name="attr_parry" disabled="true" value="2+@{fighting}/2+floor(@{fightingmod}/2)" /><input type="number" name="attr_parry_mod" />
+            <label>Toughness</label><input type="text" name="attr_toughness" disabled="true" value="@{isshieldequipped}"  /><input type="text" name="attr_toughness_mod"  />
+            <label>Charisma</label><input type="number" value='0' name="attr_charisma" />
+        </div>
+        
+        <hr />
+        
+        <h2>Health</h2>
+        <div class='health'>
+            <label>Wounds</label>
+            <select name='attr_wounds'>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+            </select>
+            <br />
+            <label>Fatigue</label>
+            <select name='attr_fatigue'>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+            </select>
+            <br />
+            <label>Incapacitated</label><input type='checkbox' name='attr_isinc' />
+        </div>
+	</div>
+
+	<div class="col">
+
+		<h2>Hindrances</h2>
+
+		<textarea name="attr_hindrances"></textarea>
+
+		<hr/>
+
+		<h2>Edges</h2>
+
+		<textarea name="attr_edges"></textarea>
+
+	</div>
+
+</div>
+
+<div class='row'>
+    <div class='equip'>
+        <h2>Powers</h2>
+        <fieldset class='repeating_powers'>
+            <input type='text' name='attr_powername' />
+            <input type='number' name='attr_powermod' />
+            <select name='attr_powerrange'>
+                <option value='touch'>Touch</option>
+            </select>
+            <input type='text' name='attr_duration' />
+            <input type='text' name='effects' />
+        </fieldset>
+        
+        <br />
+        
+        <h1>Equipment</h1>
+        <h2>Weapons</h2>
+        <fieldset class='repeating_weapons'>
+            <input type='checkbox' name='attr_isweaponequipped' />
+            <input type='text' name='attr_weaponname' />
+            <select name='attr_weapontype'>
+                <option value='pistol'>Pistol</option>
+                <option value='smg'>SMG</option>
+                <option value='assaultrifle'>Assault rifle</option>
+                <option value='shotgun'>Shotgun</option>
+                <option value='sniperrifle'>Sniper rifle</option>
+                <option value='rocketlauncher'>Rocket launcher</option>
+            </select>
+            <select name='attr_weaponrange'>
+                <option value='touch'>Touch</option>
+                <option value='20/40/80'>20/40/80</option>
+            </select>
+            <input type='number' name='attr_weaponrof' value='1' />
+            <select name='attr_weapondmg'>
+                <option value='d4'>d4</option>
+            </select>
+            <input type='number' name='attr_weaponap' value='0' />
+            <select name='attr_weaponelement'>
+                <option value='none'>None</option>
+            </select>
+            <input type='number' name='attr_weaponelementlvl' value='0' />
+            <input type='number' name='attr_weaponclip' value='0' /> / 
+            <input type='number' name='attr_weaponclip_max' value='0' />
+            <textarea name='attr_weaponnotes'></textarea>
+        </fieldset>
+        
+        <hr />
+        
+        <h2>Shields</h2>
+        <fieldset class='repeating_shields'>
+            <input type='checkbox' name='attr_isshieldequipped' />
+            <input type='text' name='attr_shieldname' />
+            <input type='number' name='attr_shieldcap' /> / 
+            <input type='number' name='attr_shieldcap_max' />
+            <select class='dtype' name='attr_shieldreactivity'>
+                <option value="d4">d4</option>
+                <option value="d6">d6</option>
+                <option value="d8">d8</option>
+                <option value="d10">d10</option>
+                <option value="d12">d12</option>
+            </select>
+            <input type='number' name='attr_shieldrecharge' />
+            <textarea name='attr_shieldnotes'></textarea>
+        </fieldset>
+        
+        <hr />
+        
+        <h2>Grenade mods</h2>
+        <fieldset class='repeating_grenades'>
+            <input type='checkbox' name='attr_isgrenadeequipped' />
+            <input type='text' name='attr_grenadename' />
+            <select name='attr_grenadedelivery'>
+                <option value='lobbed'>Lobbed</option>
+            </select>
+            <select name='attr_grenaderange'>
+                <option value='20/40/80'>20/40/80</option>
+            </select>
+            <select name='attr_grenadedmg'>
+                <option value='d4'>d4</option>
+            </select>
+            <select name='attr_grenadeelement'>
+                <option value='none'>None</option>
+            </select>
+            <input type='number' name='attr_grenadeelementlvl' value='0' />
+            <textarea name='attr_grenadenotes'></textarea>
+        </fieldset>
+        
+        <hr />
+        
+        <div class='2colrow'>
+            <div class='col'>
+                <h2>Misc. gear</h2>
+                <textarea name='attr_miscgear'></textarea>
+            </div>
+            
+            <div class='col'>
+                <h2>Ammo</h2>
+                <label>Pistol</label><input type='number' name='attr_pistolammo' /> / <input type='number' name='attr_pistolammo_max' /> <br/>
+                <label>SMG</label><input type='number' name='attr_smgammo' /> / <input type='number' name='attr_smgammo_max' /> <br/>
+                <label>Assault rifle</label><input type='number' name='attr_assaultrifleammo' /> / <input type='number' name='attr_assaultrifleammo_max' /> <br/>
+                <label>Shotgun</label><input type='number' name='attr_pistolammo' /> / <input type='number' name='attr_pistolammo_max' /> <br/>
+                <label>Sniper rifle</label><input type='number' name='attr_sniperrifleammo' /> / <input type='number' name='attr_sniperrifleammo_max' /> <br/>
+                <label>Rockets</label><input type='number' name='attr_rocketsammo' /> / <input type='number' name='attr_rocketsammo_max' /> <br/>
+                <label>Grenades</label><input type='number' name='attr_gernadesammo' /> / <input type='number' name='attr_grenadesammo_max' /> <br/>
+            </div>
+        </div>
+    </div>
+</div>
